@@ -1,0 +1,185 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "siteName1": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the first web app that you wish to create."
+      }
+    },
+    "siteName2": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the second web app that you wish to create."
+      }
+    },
+    "hostingPlanName": {
+      "type": "string",
+      "defaultValue": "webapp-plan",
+      "metadata": {
+        "description": "The name of the App Service plan to use for hosting the web app."
+      }
+    },
+    "sku": {
+      "type": "string",
+      "allowedValues": [
+        "F1",
+        "D1",
+        "B1",
+        "B2",
+        "B3",
+        "S1",
+        "S2",
+        "S3",
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "defaultValue": "S1",
+      "metadata": {
+        "description": "The pricing tier for the hosting plan."
+      }
+    },
+    "workerSize": {
+      "type": "string",
+      "allowedValues": [
+        "0",
+        "1",
+        "2"
+      ],
+      "defaultValue": "0",
+      "metadata": {
+        "description": "The instance size of the hosting plan (small, medium, or large)."
+      }
+    },
+    "repoURL1": {
+      "type": "string",
+      "defaultValue": "https://github.com/Araffe/Azure101-WebApp1.git",
+      "metadata": {
+        "description": "The URL for the GitHub repository that contains the project to deploy."
+      }
+    },
+    "repoURL2": {
+      "type": "string",
+      "defaultValue": "https://github.com/Araffe/Azure101-WebApp2.git",
+      "metadata": {
+        "description": "The URL for the second GitHub repository that contains the project to deploy."
+      }
+    },
+    "resourceGroup2": {
+      "type": "string",
+      "defaultValue": "WebApp-WestCentralUS",
+      "metadata": {
+        "description": "The second resource group to deploy to."
+      }
+    },
+    "branch": {
+      "type": "string",
+      "defaultValue": "master",
+      "metadata": {
+        "description": "The branch of the GitHub repository to use."
+      }
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2015-08-01",
+      "name": "[parameters('hostingPlanName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "[parameters('sku')]",
+        "capacity": "[parameters('workerSize')]"
+      },
+      "properties": {
+        "name": "[parameters('hostingPlanName')]"
+      }
+    },
+    {
+      "apiVersion": "2015-08-01",
+      "name": "[parameters('siteName1')]",
+      "type": "Microsoft.Web/sites",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]"
+      ],
+      "properties": {
+        "serverFarmId": "[parameters('hostingPlanName')]"
+      },
+      "resources": [
+        {
+          "apiVersion": "2015-08-01",
+          "name": "web",
+          "type": "sourcecontrols",
+          "dependsOn": [
+            "[resourceId('Microsoft.Web/Sites', parameters('siteName1'))]"
+          ],
+          "properties": {
+            "RepoUrl": "[parameters('repoURL1')]",
+            "branch": "[parameters('branch')]",
+            "IsManualIntegration": true
+          }
+        }
+      ]
+    },
+    {
+      "apiVersion": "2017-05-10",
+      "name": "nestedTemplate",
+      "type": "Microsoft.Resources/deployments",
+      "resourceGroup": "[parameters('resourceGroup2')]",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "parameters": {},
+          "variables": {},
+          "resources": [
+            {
+              "apiVersion": "2015-08-01",
+              "name": "[parameters('hostingPlanName')]",
+              "type": "Microsoft.Web/serverfarms",
+              "location": "West Central US",
+              "sku": {
+                "name": "[parameters('sku')]",
+                "capacity": "[parameters('workerSize')]"
+              },
+              "properties": {
+              }
+            },
+            {
+              "apiVersion": "2015-08-01",
+              "name": "[parameters('siteName2')]",
+              "type": "Microsoft.Web/sites",
+              "location": "West Central US",
+              "dependsOn": [
+                    "[parameters('hostingPlanName')]"
+              ],
+              "properties": {
+                "serverFarmId": "[parameters('hostingPlanName')]"
+              },
+              "resources": [
+                {
+                  "apiVersion": "2015-08-01",
+                  "name": "web",
+                  "type": "sourcecontrols",
+                  "dependsOn": [
+                    "/subscriptions/7855847d-d89f-4bc7-93c4-59623eab44cd/resourceGroups/WebApp-WestCentralUS/providers/Microsoft.Web/sites/adraffe-webapp2"
+                  ],
+                  "properties": {
+                    "RepoUrl": "[parameters('repoURL2')]",
+                    "branch": "[parameters('branch')]",
+                    "IsManualIntegration": true
+                  }
+                }
+              ]
+            }
+          ]
+
+        }
+      }
+    }
+  ]
+}
