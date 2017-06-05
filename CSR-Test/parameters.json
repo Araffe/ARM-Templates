@@ -1,0 +1,114 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "extensions_enablevmaccess_username": {
+            "value": null
+        },
+        "extensions_enablevmaccess_password": {
+            "value": null
+        },
+        "extensions_enablevmaccess_ssh_key": {
+            "value": null
+        },
+        "extensions_enablevmaccess_reset_ssh": {
+            "value": null
+        },
+        "extensions_enablevmaccess_remove_user": {
+            "value": null
+        },
+        "extensions_enablevmaccess_expiration": {
+            "value": null
+        },
+        "extensions_enablevmaccess_username_1": {
+            "value": null
+        },
+        "extensions_enablevmaccess_password_1": {
+            "value": null
+        },
+        "extensions_enablevmaccess_ssh_key_1": {
+            "value": null
+        },
+        "extensions_enablevmaccess_reset_ssh_1": {
+            "value": null
+        },
+        "extensions_enablevmaccess_remove_user_1": {
+            "value": null
+        },
+        "extensions_enablevmaccess_expiration_1": {
+            "value": null
+        },
+        "disks_AR_VM_1_OsDisk_1_c47a931ac2634646a45ce8ccfea6cbd6_name": {
+            "value": null
+        },
+        "disks_AR_VM_2_OsDisk_1_ba84c392a33a472da75ed2335ae2f9a5_name": {
+            "value": null
+        },
+        "virtualMachines_AR_VM_1_name": {
+            "value": null
+        },
+        "virtualMachines_AR_VM_2_name": {
+            "value": null
+        },
+        "virtualMachines_CSR1_name": {
+            "value": null
+        },
+        "networkInterfaces_AR_NIC_1_name": {
+            "value": null
+        },
+        "networkInterfaces_AR_NIC_2_name": {
+            "value": null
+        },
+        "networkInterfaces_CSR1_Nic0_name": {
+            "value": null
+        },
+        "networkInterfaces_CSR1_Nic1_name": {
+            "value": null
+        },
+        "networkInterfaces_CSR1_Nic2_name": {
+            "value": null
+        },
+        "networkInterfaces_CSR1_Nic3_name": {
+            "value": null
+        },
+        "networkSecurityGroups_AR_NSG1_name": {
+            "value": null
+        },
+        "networkSecurityGroups_CSR1_SSH_SecurityGroup_name": {
+            "value": null
+        },
+        "publicIPAddresses_csr_pip_name": {
+            "value": null
+        },
+        "publicIPAddresses_mypublicdns1875121347_name": {
+            "value": null
+        },
+        "publicIPAddresses_mypublicdns2039028167_name": {
+            "value": null
+        },
+        "routeTables_VNet1_Sub1_CSR_RouteTable_name": {
+            "value": null
+        },
+        "routeTables_VNet1_Sub2_CSR_RouteTable_name": {
+            "value": null
+        },
+        "routeTables_VNet1_Sub3_CSR_RouteTable_name": {
+            "value": null
+        },
+        "routeTables_VNet1_Sub4_CSR_RouteTable_name": {
+            "value": null
+        },
+        "virtualNetworks_vnet01_name": {
+            "value": null
+        },
+        "storageAccounts_adraffecsr_name": {
+            "value": null
+        },
+        "extensions_enablevmaccess_name": {
+            "value": null
+        },
+        "extensions_enablevmaccess_name_1": {
+            "value": null
+        }
+    }
+}

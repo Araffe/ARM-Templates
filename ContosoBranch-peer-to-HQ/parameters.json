@@ -1,0 +1,30 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "disks_Win_VM_1_OsDisk_1_a70af4d12db84588a892728500337240_name": {
+            "value": null
+        },
+        "virtualMachines_Win_VM_1_name": {
+            "value": null
+        },
+        "networkInterfaces_myNic_name": {
+            "value": null
+        },
+        "networkSecurityGroups_myNetworkSecurityGroup_name": {
+            "value": null
+        },
+        "publicIPAddresses_PIP773152342_name": {
+            "value": null
+        },
+        "virtualNetworks_ContBranch_VNet_name": {
+            "value": null
+        },
+        "storageAccounts_microcontoswin042419130_name": {
+            "value": null
+        },
+        "extensions_BGInfo_name": {
+            "value": null
+        }
+    }
+}
