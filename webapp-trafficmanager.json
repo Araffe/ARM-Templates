@@ -17,7 +17,7 @@
   },
 
   "variables": {
-    "webAppLocations": [ "westcentralus", "westeurope" ],
+    "webAppLocations": [ "westeurope", "westcentralus" ],
     "gitRepo": ["https://github.com/Araffe/Azure101-WebApp1.git", "https://github.com/Araffe/Azure101-WebApp2.git"],
     "branch": "master"
   },
@@ -81,7 +81,7 @@
         "monitorConfig": {
           "protocol": "HTTP",
           "port": 80,
-          "path": "/"
+          "path": "/index.html"
         }
       }
     },
