@@ -1,5 +1,5 @@
 $rg = (new-azurermresourcegroup -name infraSecLab -Location westeurope).ResourceGroupName
-$outputs = (new-azurermresourcegroupdeployment -Name infraSecLab -ResourceGroupName $rg -TemplateFile azuredeploy.json).Outputs
+$outputs = (new-azurermresourcegroupdeployment -Name infraSecLab -ResourceGroupName $rg -TemplateUri https://raw.githubusercontent.com/Araffe/ARM-Templates/master/infra-security-lab/azuredeploy.json).Outputs
 
 $DestStorageAccount = $outputs.storageAccountName.Value
 $SourceStorageAccount = "infraseclab"
