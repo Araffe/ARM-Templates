@@ -18,7 +18,7 @@
         }
     },
     "variables": {
-        "storageAccountPrefix": "infraSec",
+        "storageAccountPrefix": "contosoiaas",
         "storageAccountName": "[toLower(concat(variables('storageAccountPrefix'), uniqueString(subscription().subscriptionId)))]",
         "publicIps": [
             "vm1-pip",
