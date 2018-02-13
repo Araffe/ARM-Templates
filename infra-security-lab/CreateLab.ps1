@@ -1,4 +1,4 @@
-$rg = (new-azurermresourcegroup -name infraSecLab -Location westeurope).ResourceGroupName
+$rg = (new-azurermresourcegroup -name Contoso-IaaS -Location westeurope).ResourceGroupName
 $outputs = (new-azurermresourcegroupdeployment -Name infraSecLab -ResourceGroupName $rg -TemplateUri https://raw.githubusercontent.com/Araffe/ARM-Templates/master/infra-security-lab/azuredeploy.json).Outputs
 
 $DestStorageAccount = $outputs.storageAccountName.Value
@@ -8,7 +8,7 @@ $sasToken = "?sv=2017-04-17&ss=b&srt=sco&sp=rwdlac&se=2018-03-31T15:53:57Z&st=20
 $SourceStorageContext = New-AzureStorageContext –StorageAccountName $SourceStorageAccount -SasToken $sasToken
 $DestStorageContext = New-AzureStorageContext –StorageAccountName $DestStorageAccount -StorageAccountKey $DestStorageKey
 $SourceStorageContainer = 'infraseclab'
-$DestStorageContainer = (new-azurestoragecontainer -Name contoso -context $DestStorageContext).name
+$DestStorageContainer = (new-azurestoragecontainer -Name contoso -permission Container -context $DestStorageContext).name
 
 $Blobs = (Get-AzureStorageBlob -Context $SourceStorageContext -Container $SourceStorageContainer)
 foreach ($Blob in $Blobs)
