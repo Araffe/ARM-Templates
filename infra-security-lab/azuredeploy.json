@@ -36,7 +36,7 @@
         "subnetName": "infraSecSubnet1",
         "vmExtensionName": "dscExtension",
         "configurationFunction": "ContosoWebsite.ps1\\ContosoWebsite",
-        "modulesURL": "https://raw.githubusercontent.com/Araffe/ARM-Templates/master/infra-security-lab/ContosoWebsite.ps1"
+        "modulesURL": "https://raw.githubusercontent.com/Araffe/ARM-Templates/master/infra-security-lab/ContosoWebsite.ps1.zip"
     },
     "resources": [
         {

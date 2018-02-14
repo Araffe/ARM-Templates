@@ -41,7 +41,7 @@ Configuration ContosoWebsite
 			    [system.io.directory]::CreateDirectory("C:\WebApp")
 			    $dest = "C:\WebApp\Site.zip" 
                 Remove-Item -path "C:\inetpub\wwwroot" -Force -Recurse -ErrorAction SilentlyContinue
-			    Invoke-WebRequest "https://raw.githubusercontent.com/Araffe/ARM-Templates/master/infra-security-lab/cloudshop.zip" -OutFile $dest
+			    Invoke-WebRequest "https://raw.githubusercontent.com/Araffe/ARM-Templates/master/infra-security-lab/ContosoWeb.zip" -OutFile $dest
 			    Add-Type -assembly "system.io.compression.filesystem"
 			    [io.compression.zipfile]::ExtractToDirectory($dest, "C:\inetpub\wwwroot")
 		    }
