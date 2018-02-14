@@ -32,8 +32,8 @@
             "vm3",
             "vm4"
         ],
-        "vnetName": "infraSecVnet1",
-        "subnetName": "infraSecSubnet1",
+        "vnetName": "contosoVnet1",
+        "subnetName": "contosoSubnet1",
         "vmExtensionName": "dscExtension",
         "configurationFunction": "ContosoWebsite.ps1\\ContosoWebsite",
         "modulesURL": "https://raw.githubusercontent.com/Araffe/ARM-Templates/master/infra-security-lab/ContosoWebsite.ps1.zip"
