@@ -6,7 +6,7 @@
         "appServicePlanName": "contoso-appservice",
         "webAppPrefix": "contosoapp",
         "webAppName": "[concat(variables('webAppPrefix'), uniqueString(subscription().subscriptionId))]",
-        "sourceRepo": "https://github.com/benc-uk/dotnet-demoapp.git",
+        "sourceRepo": "https://github.com/Araffe/Contoso-Web.git",
         "sourceBranch": "master"
     },
     "resources": [
