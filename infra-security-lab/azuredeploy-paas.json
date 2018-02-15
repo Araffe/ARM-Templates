@@ -1,0 +1,63 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "variables": {
+        "appServicePlanName": "contoso-appservice",
+        "webAppPrefix": "contosoapp",
+        "webAppName": "[concat(variables('webAppPrefix'), uniqueString(subscription().subscriptionId))]",
+        "sourceRepo": "https://github.com/benc-uk/dotnet-demoapp.git",
+        "sourceBranch": "master"
+    },
+    "resources": [
+        {
+            "apiVersion": "2017-08-01",
+            "type": "Microsoft.Web/serverfarms",
+            "kind": "app",
+            "name": "[variables('appServicePlanName')]",
+            "location": "[resourceGroup().location]",
+            "comments": "",
+            "tags": {
+                "displayName": "AppServicePlan"
+            },
+            "properties": {},
+            "dependsOn": [],
+            "sku": {
+                "name": "S1"
+            }
+        },
+        {
+            "apiVersion": "2016-08-01",
+            "type": "Microsoft.Web/sites",
+            "kind": "app",
+            "name": "[variables('webAppName')]",
+            "location": "[resourceGroup().location]",
+            "comments": "",
+            "tags": {
+              "displayName": "WebApp"
+            },
+            "properties": {
+              "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
+            },
+            "dependsOn": [
+              "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
+            ],
+            "resources": [
+                {
+                   "apiVersion": "2015-08-01",
+                   "name": "web",
+                   "type": "sourcecontrols",
+                   "dependsOn": [
+                      "[resourceId('Microsoft.Web/Sites', variables('webAppName'))]"
+                   ],
+                   "properties": {
+                      "RepoUrl": "[variables('sourceRepo')]",
+                      "branch": "[variables('sourceBranch')]",
+                      "IsManualIntegration": true
+                   }
+                }
+             ]
+          }
+    ],
+    "outputs": {}
+}
