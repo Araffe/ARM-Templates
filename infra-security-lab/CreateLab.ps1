@@ -1,4 +1,5 @@
 $rg = (new-azurermresourcegroup -name Contoso-IaaS -Location westeurope).ResourceGroupName
+$rg2 = (new-azurermresourcegroup -name Contoso-PaaS -Location westeurope).ResourceGroupName
 $outputs = (new-azurermresourcegroupdeployment -Name infraSecLab -ResourceGroupName $rg -TemplateUri https://raw.githubusercontent.com/Araffe/ARM-Templates/master/infra-security-lab/azuredeploy.json).Outputs
 
 $DestStorageAccount = $outputs.storageAccountName.Value
@@ -17,3 +18,7 @@ foreach ($Blob in $Blobs)
    Start-CopyAzureStorageBlob -Context $SourceStorageContext -SrcContainer $SourceStorageContainer -SrcBlob $Blob.Name `
       -DestContext $DestStorageContext -DestContainer $DestStorageContainer -DestBlob $Blob.Name
 }
+
+Write-Output "IaaS Lab Ready."
+new-azurermresourcegroupdeployment -Name infraSecpaasLab -ResourceGroupName $rg2 -TemplateUri https://raw.githubusercontent.com/Araffe/ARM-Templates/master/infra-security-lab/azuredeploy-paas.json
+Write-Output "PaaS Lab Ready."
