@@ -4,7 +4,7 @@ $tenant = (Get-AzureADTenantDetail).verifiedDomains.name
 $UPN = "admin@" + $tenant
 $currentuser = (get-azureaduser).userprincipalname.tostring()
 
-if ($currentuser.startswith("admin@", 1)) { New-AzureADUser -DisplayName "Admin" -PasswordProfile $PasswordProfile -UserPrincipalName $UPN -AccountEnabled $true -MailNickName "admin" -UsageLocation "GB"
+if ($currentuser.startswith("admin@", 1)) { New-AzureADUser -DisplayName "Admin" -PasswordProfile $PasswordProfile -UserPrincipalName $UPN -AccountEnabled $true -MailNickName "admin" -UsageLocation "GB" }
 
 $UPN = "Isaiah.Langer@" + $tenant
 New-AzureADUser -DisplayName "Isaiah Langer" -PasswordProfile $PasswordProfile -UserPrincipalName $UPN -AccountEnabled $true -MailNickName "IsaiahL" -UsageLocation "GB"
