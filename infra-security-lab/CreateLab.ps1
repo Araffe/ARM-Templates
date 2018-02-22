@@ -1,5 +1,5 @@
-$rg = (new-azurermresourcegroup -name Contoso-IaaS -Location westeurope).ResourceGroupName
-$rg2 = (new-azurermresourcegroup -name Contoso-PaaS -Location westeurope).ResourceGroupName
+$rg = (new-azurermresourcegroup -name Contoso-IaaS -Location westus2).ResourceGroupName
+$rg2 = (new-azurermresourcegroup -name Contoso-PaaS -Location westus2).ResourceGroupName
 $outputs = (new-azurermresourcegroupdeployment -Name infraSecLab -ResourceGroupName $rg -TemplateUri https://raw.githubusercontent.com/Araffe/ARM-Templates/master/infra-security-lab/azuredeploy.json).Outputs
 
 $DestStorageAccount = $outputs.storageAccountName.Value
