@@ -1,5 +1,5 @@
 $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
-$PasswordProfile.Password = "Password123."
+$PasswordProfile.Password = "M1crosoft123"
 $tenant = (Get-AzureADTenantDetail).verifiedDomains.name
 # $UPN = "admin@" + $tenant
 # $currentuser = (get-azureaduser).userprincipalname.tostring()
